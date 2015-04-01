@@ -4,8 +4,8 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title.
-  h3("Likelihood Ratio Statistics for 2X2 Tables"),
-  h4("Choi et al. PLOS One 2015"),
+  h3(a("Likelihood Ratio Statistics for 2X2 Tables", href="http://cran.r-project.org/web/packages/ProfileLikelihood/index.html",target="_blank")),
+  h4(a("Choi et al. PLOS One 2015", href="citation.html",target="_blank")),
   
 
   sidebarLayout(
@@ -24,7 +24,7 @@ shinyUI(fluidPage(
 
 
     mainPanel(
-      #      h5("the maximum likelihood estimate for of ratio"),
+      #      h5("the maximum likelihood estimate for of odds ratio"),
       #      verbatimTextOutput("mle.lor.uncond"),
       #      h5("the maximum conditional likelihood estimate of odds ratio"),
       #      verbatimTextOutput("mle.lor.cond"),
