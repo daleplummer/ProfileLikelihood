@@ -21,29 +21,36 @@ shinyUI(fluidPage(
 
 
     mainPanel(
-      h5("the maximum likelihood estimate for log odds ratio"),
-      verbatimTextOutput("mle.lor.uncond"),
-      h5("the maximum conditional likelihood estimate for log odds ratio"),
-      verbatimTextOutput("mle.lor.cond"),
-      h5("profile likelihood support interval (k=6.8) corresponding to a 95% confidence interval based on a normal approximation"),
-      verbatimTextOutput("LI.norm.profile"),
-      h5("conditional likelihood support interval (k=6.8) corresponding to a 95% confidence interval based on a normal approximation"),
-      verbatimTextOutput("LI.norm.cond"),
-      h5("profile likelihood ratio"),
-      verbatimTextOutput("LR.profile"),
-      h5("conditional likelihood ratio"),
-      verbatimTextOutput("LR.cond"),
-      h5("p-value based on the profile LR statistic"),
-      verbatimTextOutput("Pvalue.LR.profile"),
-      h5("p-value based on the conditional LR statistic"),
-      verbatimTextOutput("Pvalue.LR.cond"),
-      h5("p-value from Pearson's Chi-squared test"),
-      verbatimTextOutput("Pvalue.chisq.test"),
-      h5("p-value from Fisher's exact test"),
-      verbatimTextOutput("Pvalue.fisher.test"),
-      h5("p-value from Pearson's Chi-squared test with continuity correction"),
-      verbatimTextOutput("Pvalue.chisq.cont.correction")
+      #      h5("the maximum likelihood estimate for log odds ratio"),
+      #      verbatimTextOutput("mle.lor.uncond"),
+      #      h5("the maximum conditional likelihood estimate for log odds ratio"),
+      #      verbatimTextOutput("mle.lor.cond"),
+      #      h5("profile likelihood support interval (k=6.8) corresponding to a 95% confidence interval based on a normal approximation"),
+      #      verbatimTextOutput("LI.norm.profile"),
+      #      h5("conditional likelihood support interval (k=6.8) corresponding to a 95% confidence interval based on a normal approximation"),
+      #      verbatimTextOutput("LI.norm.cond"),
+      #      h5("profile likelihood ratio"),
+      #      verbatimTextOutput("LR.profile"),
+      #      h5("conditional likelihood ratio"),
+      #      verbatimTextOutput("LR.cond"),
+      #      h5("p-value based on the profile LR statistic"),
+      #      verbatimTextOutput("Pvalue.LR.profile"),
+      #      h5("p-value based on the conditional LR statistic"),
+      #      verbatimTextOutput("Pvalue.LR.cond"),
+      #      h5("p-value from Pearson's Chi-squared test"),
+      #      verbatimTextOutput("Pvalue.chisq.test"),
+      #      h5("p-value from Fisher's exact test"),
+      #      verbatimTextOutput("Pvalue.fisher.test"),
+      #      h5("p-value from Pearson's Chi-squared test with continuity correction"),
+      #      verbatimTextOutput("Pvalue.chisq.cont.correction"),
       
+      tableOutput("values"),
+      
+      tags$hr(),
+      
+      h3(a("ProfileLikelihood Package", href="http://cran.r-project.org/web/packages/ProfileLikelihood/index.html")),
+      
+      helpText("The ProfileLikelihood package provides profile likelihoods for a parameter of interest in commonly used statistical models. The models include linear models, generalized linear models, proportional odds models, linear mixed-effects models, and linear models for longitudinal responses fitted by generalized least squares. The package also provides plots for normalized profile likelihoods as well as the maximum profile likelihood estimates and the kth likelihood support intervals.")
     )
   )
 ))
