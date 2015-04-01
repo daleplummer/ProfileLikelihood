@@ -41,7 +41,7 @@ shinyServer(function(input, output) {
   #    cat(x()$Pvalue.chisq.cont.correction)
   #  })
 
-  resultValues <- reactive({
+  resultValues1 <- reactive({
   data.frame(
     Result = c("maximum likelihood estimate of odds ratio",
              "maximum conditional likelihood estimate of odds ratio",
@@ -50,27 +50,38 @@ shinyServer(function(input, output) {
              "profile likelihood ratio",
              "conditional likelihood ratio",
              "p-value based on the conditional LR chi-squared statistic",
-             "p-value based on the profile LR chi-squared statistic",
-             "p-value from Pearson's Chi-squared test",
-             "p-value from Fisher's exact test",
-             "p-value from Pearson's Chi-squared test with continuity correction"),
-    Value = as.character(c(round(x()$mle.lor.uncond,2),
-                           round(x()$mle.lor.cond,2),
-                           paste(x()$LI.norm.profile, collapse=', '),
-                           paste(x()$LI.norm.cond, collapse=', '),
+             "p-value based on the profile LR chi-squared statistic"),
+    Value = as.character(c(
+                           round(exp(x()$mle.lor.uncond),2),
+                           round(exp(x()$mle.lor.cond),2),
+                           paste(round(exp(x()$LI.norm.profile),2), collapse=', '),
+                           paste(round(exp(x()$LI.norm.cond),2), collapse=', '),
                            round(x()$LR.profile,2),
                            round(x()$LR.cond,2),
                            round(x()$Pvalue.LR.cond,2),
-                           round(x()$Pvalue.LR.profile,2),
-                           round(x()$Pvalue.chisq.test,2),
-                           round(x()$Pvalue.fisher.test,2),
-                           round(x()$Pvalue.chisq.cont.correction,2))),
+                           round(x()$Pvalue.LR.profile,2))),
     stringsAsFactors=FALSE)
-  }) 
-
-# Show the values using an HTML table
-  output$values <- renderTable({
-    resultValues()
   })
+  
+  resultValues2 <- reactive({
+    data.frame(
+      Result = c(
+                 "p-value from Pearson's Chi-squared test",
+                 "p-value from Fisher's exact test",
+                 "p-value from Pearson's Chi-squared test with continuity correction"),
+      Value = as.character(c(
+                             round(x()$Pvalue.chisq.test,2),
+                             round(x()$Pvalue.fisher.test,2),
+                             round(x()$Pvalue.chisq.cont.correction,2))),
+      stringsAsFactors=FALSE)
+  }) 
+  
+# Show the values using an HTML table
+  output$values1 <- renderTable({
+    resultValues1()
+  })
+output$values2 <- renderTable({
+  resultValues2()
+})
 
 })
