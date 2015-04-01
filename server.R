@@ -43,14 +43,14 @@ shinyServer(function(input, output) {
 
   resultValues <- reactive({
   data.frame(
-    Result = c("the maximum likelihood estimate for log odds ratio",
-             "the maximum conditional likelihood estimate for log odds ratio",
+    Result = c("maximum likelihood estimate of odds ratio",
+             "maximum conditional likelihood estimate of odds ratio",
              "profile likelihood support interval k=6.8 corresponding to a 95% CI",
              "conditional likelihood support interval k=6.8 corresponding to a 95% CI",
              "profile likelihood ratio",
              "conditional likelihood ratio",
-             "p-value based on the profile LR statistic",
-             "p-value based on the conditional LR statistic",
+             "p-value based on the conditional LR chi-squared statistic",
+             "p-value based on the profile LR chi-squared statistic",
              "p-value from Pearson's Chi-squared test",
              "p-value from Fisher's exact test",
              "p-value from Pearson's Chi-squared test with continuity correction"),
@@ -60,8 +60,8 @@ shinyServer(function(input, output) {
                            paste(x()$LI.norm.cond, collapse=', '),
                            round(x()$LR.profile,2),
                            round(x()$LR.cond,2),
-                           round(x()$Pvalue.LR.profile,2),
                            round(x()$Pvalue.LR.cond,2),
+                           round(x()$Pvalue.LR.profile,2),
                            round(x()$Pvalue.chisq.test,2),
                            round(x()$Pvalue.fisher.test,2),
                            round(x()$Pvalue.chisq.cont.correction,2))),

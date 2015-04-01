@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title.
-  titlePanel("LR.pvalue"),
+  titlePanel("Likelihood Ratio Statistics for 2X2 Tables"),
   
 
   sidebarLayout(
@@ -14,16 +14,18 @@ shinyUI(fluidPage(
       numericInput("y2", "the number of success for treatment 1", 30),
       numericInput("n1", "the sample size for treatment 1", 50),
       numericInput("n2", "the sample size for treatment 2", 50),
-      numericInput("interval", "grid for evaluating a parameter of interest to obtain values for likelihoods",0.01),
       
-      helpText("This function provides p-values based on the profile and conditional likelihood ratio (LR) statistics for 2 x 2 tables. The function also provides the profile and conditional likelihood support intervals(k=6.8) corresponding to a 95% confidence interval based on a normal approximation. For comparison purpose, p-values from Pearson's Chi-squared test, Fisher's exact test and Pearson's Chi-squared test with continuity correction are also provided.")
+      helpText("This calculator provides p-values based on the profile and conditional likelihood ratio (LR) statistics for 2 x 2 tables. The function also provides the profile and conditional likelihood support intervals (k=6.8) corresponding to a 95% confidence interval based on a normal approximation."), 
+      helpText("For comparison purpose, p-values from Pearson's Chi-squared test, Fisher's exact test and Pearson's Chi-squared test with continuity correction are also provided."),
+      
+      numericInput("interval", "grid for evaluating a parameter of interest to obtain values for likelihoods (default=0.01",0.01)
     ),
 
 
     mainPanel(
-      #      h5("the maximum likelihood estimate for log odds ratio"),
+      #      h5("the maximum likelihood estimate for of ratio"),
       #      verbatimTextOutput("mle.lor.uncond"),
-      #      h5("the maximum conditional likelihood estimate for log odds ratio"),
+      #      h5("the maximum conditional likelihood estimate of odds ratio"),
       #      verbatimTextOutput("mle.lor.cond"),
       #      h5("profile likelihood support interval (k=6.8) corresponding to a 95% confidence interval based on a normal approximation"),
       #      verbatimTextOutput("LI.norm.profile"),
